@@ -72,33 +72,10 @@ public class GeminiService : IGeminiService
 
     private string GetPrompt(string plantName, DateTime plantingDate)
     {
-        return $@"Bertindaklah sebagai ahli agronomi profesional spesialis pertanian tropis Indonesia.
-        Buatlah kalender manajemen budidaya tanaman {plantName} yang komprehensif, dimulai dari tanggal tanam {plantingDate:yyyy-MM-dd}.
-
-        Instruksi Khusus:
-        1. Referensi Teknis: Gunakan standar praktis budidaya di Indonesia. Sebutkan merek pupuk atau pestisida yang umum digunakan petani lokal (seperti NPK Mutiara, ZA, Curacron, Antracol, dll.) jika relevan untuk memberikan panduan yang konkret.
-        2. Format Deskripsi: Bagian ""description"" HARUS disusun dalam bentuk poin-poin (list) yang dipisahkan oleh karakter newline (\n), mencakup: cara pelaksanaan, dosis spesifik, dan tujuan.
-        3. Fase Pertumbuhan: Sesuaikan jadwal berdasarkan fase (Persemaian, Vegetatif, Generatif, Pematangan, Panen).
-        4. Output: HARUS berupa JSON array mentah tanpa teks tambahan apapun.
-
-        Struktur JSON:
-        [
-            {{
-                ""taskName"": ""Nama Tugas"",
-                ""description"": ""- Poin 1\n- Poin 2\n- Poin 3"",
-                ""daysFromPlanting"": number_of_days
-            }}
-        ]
-
-        Cakupan Tugas:
-        1. Persiapan lahan dan pemupukan dasar.
-        2. Perawatan awal (pindah tanam/penyulaman).
-        3. Jadwal pemupukan susulan (kocor/tabur) dengan dosis yang disarankan.
-        4. Pengendalian OPT (Organisme Pengganggu Tanaman) menggunakan bahan aktif atau merek yang umum di Indonesia.
-        5. Manajemen pengairan dan pemeliharaan fisik (pruning/wiwil/ajir).
-        6. Estimasi waktu panen dan indikator kematangan fisik.
-
-        Hanya kembalikan JSON array.";
+        var template = Config.GeminiPromptTemplate;
+        return template
+            .Replace("{plantName}", plantName)
+            .Replace("{plantingDate}", plantingDate.ToString("yyyy-MM-dd"));
     }
 
     public async Task<List<ScheduleTask>> GenerateScheduleAsync(string plantName, DateTime plantingDate)
