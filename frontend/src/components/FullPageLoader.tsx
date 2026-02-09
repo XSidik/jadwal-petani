@@ -1,6 +1,7 @@
 "use client";
 
 import { Loader2, Sparkles } from "lucide-react";
+import { useLanguage } from "@/context/LanguageContext";
 
 interface FullPageLoaderProps {
     message?: string;
@@ -8,9 +9,13 @@ interface FullPageLoaderProps {
 }
 
 export default function FullPageLoader({
-    message = "Sedang Memproses...",
-    subMessage = "AI kami sedang menyusun jadwal terbaik untuk Anda. Mohon tunggu sebentar."
+    message,
+    subMessage
 }: FullPageLoaderProps) {
+    const { t } = useLanguage();
+    const displayMessage = message || t("processing");
+    const displaySubMessage = subMessage || t("aiDescription");
+
     return (
         <div className="fixed inset-0 z-[9999] flex items-center justify-center bg-green-900/40 backdrop-blur-sm animate-in fade-in duration-300">
             <div className="bg-white p-10 rounded-3xl shadow-2xl border border-green-100 flex flex-col items-center max-w-sm text-center transform animate-in zoom-in-95 duration-300">
@@ -24,9 +29,9 @@ export default function FullPageLoader({
                     </div>
                 </div>
 
-                <h3 className="text-2xl font-bold text-gray-900 mb-3">{message}</h3>
+                <h3 className="text-2xl font-bold text-gray-900 mb-3">{displayMessage}</h3>
                 <p className="text-gray-600 leading-relaxed font-medium">
-                    {subMessage}
+                    {displaySubMessage}
                 </p>
 
                 <div className="mt-8 flex gap-1">

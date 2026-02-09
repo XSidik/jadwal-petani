@@ -60,7 +60,23 @@ public class ScheduleController : ControllerBase
         try
         {
             var schedule = await _scheduleService.CreateScheduleAsync(userId, model.PlantName!, model.PlantingDate);
-            return CreatedAtAction(nameof(Details), new { id = schedule.Id }, schedule);
+
+            var viewModel = new ScheduleViewModel
+            {
+                ScheduleId = schedule.Id,
+                PlantName = schedule.PlantName,
+                PlantingDate = schedule.PlantingDate,
+                Tasks = schedule.Tasks?.Select(t => new TaskViewModel
+                {
+                    Id = t.Id,
+                    TaskName = t.TaskName,
+                    Description = t.Description,
+                    ScheduledDate = t.ScheduledDate,
+                    IsCompleted = t.IsCompleted
+                }).OrderBy(t => t.ScheduledDate).ToList()
+            };
+
+            return CreatedAtAction(nameof(Details), new { id = schedule.Id }, viewModel);
         }
         catch (Exception ex)
         {

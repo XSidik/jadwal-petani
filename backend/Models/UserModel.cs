@@ -1,4 +1,6 @@
 using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
+
 namespace JadwalPetani.Models;
 
 public class User
@@ -10,5 +12,7 @@ public class User
     public string? Name { get; set; }
     public string? GoogleId { get; set; }
     public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
+
+    [JsonIgnore]
     public ICollection<PlantingSchedule>? PlantingSchedules { get; set; }
 }

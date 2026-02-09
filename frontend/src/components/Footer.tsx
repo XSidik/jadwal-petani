@@ -1,7 +1,11 @@
+"use client";
+
 import { Sprout, Facebook, Twitter, Instagram, Linkedin, ChevronRight, MapPin, Phone, Mail } from "lucide-react";
 import Link from "next/link";
+import { useLanguage } from "@/context/LanguageContext";
 
 export default function Footer() {
+    const { t } = useLanguage();
     return (
         <footer className="bg-gray-900 text-gray-300 mt-12 border-t border-gray-800">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
@@ -13,7 +17,7 @@ export default function Footer() {
                             <span className="text-white text-2xl font-bold">Jadwal Petani</span>
                         </div>
                         <p className="text-gray-400 mb-6 max-w-sm leading-relaxed">
-                            Platform digital untuk membantu petani mengelola jadwal tanam, memantau hasil panen, dan meningkatkan produktivitas pertanian Indonesia.
+                            {t("footerDesc")}
                         </p>
                         <div className="flex space-x-4">
                             {[Facebook, Twitter, Instagram, Linkedin].map((Icon, i) => (
@@ -54,7 +58,7 @@ export default function Footer() {
                     {/* Contact Info */}
                     <div>
                         <h3 className="text-white text-lg font-semibold mb-6 relative inline-block">
-                            Contact Us
+                            {t("contactUs")}
                             <span className="absolute bottom-0 left-0 w-1/2 h-1 bg-green-500 rounded"></span>
                         </h3>
                         <ul className="space-y-4 text-gray-400">
@@ -62,7 +66,7 @@ export default function Footer() {
                                 <div className="flex-shrink-0 w-8 h-8 rounded-full bg-gray-800 flex items-center justify-center text-green-500 mt-1 mr-3">
                                     <MapPin className="w-4 h-4" />
                                 </div>
-                                <span>Jl. Pertanian Modern No. 123, Jakarta Selatan, Indonesia</span>
+                                <span>{t("address")}</span>
                             </li>
                             <li className="flex items-center">
                                 <div className="flex-shrink-0 w-8 h-8 rounded-full bg-gray-800 flex items-center justify-center text-green-500 mr-3">
@@ -85,9 +89,9 @@ export default function Footer() {
                 <div className="flex flex-col md:flex-row justify-between items-center text-sm text-gray-500">
                     <p>&copy; 2026 Jadwal Petani. All rights reserved.</p>
                     <div className="flex space-x-6 mt-4 md:mt-0">
-                        <a href="#" className="hover:text-white transition duration-300">Privacy Policy</a>
-                        <a href="#" className="hover:text-white transition duration-300">Terms of Service</a>
-                        <a href="#" className="hover:text-white transition duration-300">Cookie Policy</a>
+                        <a href="#" className="hover:text-white transition duration-300">{t("privacyPolicy")}</a>
+                        <a href="#" className="hover:text-white transition duration-300">{t("termsOfService")}</a>
+                        <a href="#" className="hover:text-white transition duration-300">{t("cookiePolicy")}</a>
                     </div>
                 </div>
             </div>

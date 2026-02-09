@@ -13,6 +13,8 @@ public class ScheduleTask
     public bool IsCompleted { get; set; } = false;
     public string? GoogleCalendarEventId { get; set; }
     public int PlantingScheduleId { get; set; }
+
+    [JsonIgnore]
     public PlantingSchedule? PlantingSchedule { get; set; }
 }
 
