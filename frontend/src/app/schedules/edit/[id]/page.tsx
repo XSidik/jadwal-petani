@@ -6,8 +6,10 @@ import { useRouter, useParams } from "next/navigation";
 import { Calendar, ArrowLeft, Loader2, Save, CheckCircle2 } from "lucide-react";
 import Link from "next/link";
 import { useAuth } from "@/context/AuthContext";
+import { useLanguage } from "@/context/LanguageContext";
 
 export default function EditTaskPage() {
+    const { t } = useLanguage();
     const [taskName, setTaskName] = useState("");
     const [description, setDescription] = useState("");
     const [scheduledDate, setScheduledDate] = useState("");
@@ -53,32 +55,32 @@ export default function EditTaskPage() {
             );
             router.push("/schedules");
         } catch (err) {
-            alert("Error updating task");
+            alert(t("updateError"));
         } finally {
             setLoading(false);
         }
     };
 
-    if (fetching) return <div className="text-center py-20">Loading...</div>;
-    if (!user) return <div className="text-center py-20">Please login to edit tasks.</div>;
+    if (fetching) return <div className="text-center py-20">{t("processing")}</div>;
+    if (!user) return <div className="text-center py-20">{t("loginRequiredEdit")}</div>;
 
     return (
         <div className="max-w-2xl mx-auto">
             <Link href="/schedules" className="inline-flex items-center text-green-600 hover:text-green-700 font-semibold mb-8 group transition-all">
-                <ArrowLeft className="w-5 h-5 mr-2 group-hover:-translate-x-1 transition-transform" /> Kembali ke Daftar Jadwal
+                <ArrowLeft className="w-5 h-5 mr-2 group-hover:-translate-x-1 transition-transform" /> {t("backToList")}
             </Link>
 
-            <div className="bg-white rounded-3xl shadow-xl shadow-green-100/50 border border-green-50 overflow-hidden">
-                <div className="bg-green-600 p-8 text-white">
-                    <h1 className="text-3xl font-bold mb-2">Edit Tugas</h1>
-                    <p className="text-green-100">Perbarui detail tugas atau tandai sebagai selesai.</p>
+            <div className="bg-white dark:bg-gray-800 rounded-3xl shadow-xl shadow-green-100/50 dark:shadow-none border border-green-50 dark:border-gray-700 overflow-hidden">
+                <div className="bg-green-600 dark:bg-green-700 p-8 text-white">
+                    <h1 className="text-3xl font-bold mb-2">{t("editTask")}</h1>
+                    <p className="text-green-100 dark:text-green-200">{t("updateTaskDesc")}</p>
                 </div>
 
                 <form onSubmit={handleSubmit} className="p-8 space-y-8">
                     <div className="space-y-6">
                         <div className="space-y-2">
-                            <label htmlFor="taskName" className="text-sm font-bold text-gray-700 uppercase tracking-wider">
-                                Nama Tugas
+                            <label htmlFor="taskName" className="text-sm font-bold text-gray-700 dark:text-gray-300 uppercase tracking-wider">
+                                {t("taskNameLabel")}
                             </label>
                             <input
                                 id="taskName"
@@ -86,26 +88,26 @@ export default function EditTaskPage() {
                                 required
                                 value={taskName}
                                 onChange={(e) => setTaskName(e.target.value)}
-                                className="w-full px-4 py-4 bg-gray-50 border border-gray-100 rounded-2xl focus:ring-4 focus:ring-green-500/10 focus:border-green-500 transition-all font-medium"
+                                className="w-full px-4 py-4 bg-gray-50 dark:bg-gray-900 border border-gray-100 dark:border-gray-700 rounded-2xl focus:ring-4 focus:ring-green-500/10 focus:border-green-500 transition-all font-medium text-gray-900 dark:text-white"
                             />
                         </div>
 
                         <div className="space-y-2">
-                            <label htmlFor="description" className="text-sm font-bold text-gray-700 uppercase tracking-wider">
-                                Deskripsi
+                            <label htmlFor="description" className="text-sm font-bold text-gray-700 dark:text-gray-300 uppercase tracking-wider">
+                                {t("description")}
                             </label>
                             <textarea
                                 id="description"
                                 rows={3}
                                 value={description}
                                 onChange={(e) => setDescription(e.target.value)}
-                                className="w-full px-4 py-4 bg-gray-50 border border-gray-100 rounded-2xl focus:ring-4 focus:ring-green-500/10 focus:border-green-500 transition-all"
+                                className="w-full px-4 py-4 bg-gray-50 dark:bg-gray-900 border border-gray-100 dark:border-gray-700 rounded-2xl focus:ring-4 focus:ring-green-500/10 focus:border-green-500 transition-all text-gray-900 dark:text-white"
                             />
                         </div>
 
                         <div className="space-y-2">
-                            <label htmlFor="scheduledDate" className="text-sm font-bold text-gray-700 uppercase tracking-wider flex items-center">
-                                <Calendar className="w-4 h-4 mr-2 text-green-600" /> Tanggal Terjadwal
+                            <label htmlFor="scheduledDate" className="text-sm font-bold text-gray-700 dark:text-gray-300 uppercase tracking-wider flex items-center">
+                                <Calendar className="w-4 h-4 mr-2 text-green-600 dark:text-green-500" /> {t("scheduledDateLabel")}
                             </label>
                             <input
                                 id="scheduledDate"
@@ -113,7 +115,7 @@ export default function EditTaskPage() {
                                 required
                                 value={scheduledDate}
                                 onChange={(e) => setScheduledDate(e.target.value)}
-                                className="w-full px-4 py-4 bg-gray-50 border border-gray-100 rounded-2xl focus:ring-4 focus:ring-green-500/10 focus:border-green-500 transition-all"
+                                className="w-full px-4 py-4 bg-gray-50 dark:bg-gray-900 border border-gray-100 dark:border-gray-700 rounded-2xl focus:ring-4 focus:ring-green-500/10 focus:border-green-500 transition-all text-gray-900 dark:text-white dark:[color-scheme:dark]"
                             />
                         </div>
 
@@ -126,14 +128,14 @@ export default function EditTaskPage() {
                                         onChange={(e) => setIsCompleted(e.target.checked)}
                                         className="sr-only"
                                     />
-                                    <div className={`w-14 h-8 rounded-full shadow-inner transition-colors ${isCompleted ? 'bg-green-500' : 'bg-gray-200'}`}></div>
-                                    <div className={`absolute left-1 top-1 w-6 h-6 bg-white rounded-full transition-transform shadow-md ${isCompleted ? 'translate-x-6' : ''}`}></div>
+                                    <div className={`w-14 h-8 rounded-full shadow-inner transition-colors ${isCompleted ? 'bg-green-500 dark:bg-green-600' : 'bg-gray-200 dark:bg-gray-700'}`}></div>
+                                    <div className={`absolute left-1 top-1 w-6 h-6 bg-white dark:bg-gray-200 rounded-full transition-transform shadow-md ${isCompleted ? 'translate-x-6' : ''}`}></div>
                                 </div>
                                 <div className="ml-4 flex items-center">
-                                    <span className={`text-lg font-bold transition-colors ${isCompleted ? 'text-green-600' : 'text-gray-500'}`}>
-                                        {isCompleted ? "Selesai" : "Belum Selesai"}
+                                    <span className={`text-lg font-bold transition-colors ${isCompleted ? 'text-green-600 dark:text-green-500' : 'text-gray-500 dark:text-gray-400'}`}>
+                                        {isCompleted ? t("completedLabel") : t("notCompletedLabel")}
                                     </span>
-                                    {isCompleted && <CheckCircle2 className="w-5 h-5 ml-2 text-green-500" />}
+                                    {isCompleted && <CheckCircle2 className="w-5 h-5 ml-2 text-green-500 dark:text-green-400" />}
                                 </div>
                             </label>
                         </div>
@@ -147,12 +149,12 @@ export default function EditTaskPage() {
                         {loading ? (
                             <>
                                 <Loader2 className="w-6 h-6 mr-3 animate-spin" />
-                                Menyimpan...
+                                {t("saving")}
                             </>
                         ) : (
                             <>
                                 <Save className="mr-3 w-6 h-6" />
-                                Simpan Perubahan
+                                {t("saveChanges")}
                             </>
                         )}
                     </button>
