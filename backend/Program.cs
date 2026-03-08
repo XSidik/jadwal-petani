@@ -7,6 +7,7 @@ using JadwalPetani.Filters;
 using dotenv.net;
 using JadwalPetani;
 using Microsoft.OpenApi;
+using Microsoft.AspNetCore.HttpOverrides;
 
 DotEnv.Load();
 AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
@@ -118,6 +119,12 @@ app.UseRouting();
 app.UseCors("AllowNextJs");
 
 app.UseSession();
+
+app.UseForwardedHeaders(new ForwardedHeadersOptions
+{
+    ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto
+});
+
 app.UseAuthentication();
 app.UseAuthorization();
 
