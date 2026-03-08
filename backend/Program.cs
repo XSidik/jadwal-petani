@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Authentication.Google;
 using Microsoft.EntityFrameworkCore;
 using JadwalPetani.Data;
 using JadwalPetani.Services;
+using JadwalPetani.Filters;
 using dotenv.net;
 using JadwalPetani;
 using Microsoft.OpenApi;
@@ -14,7 +15,10 @@ var builder = WebApplication.CreateBuilder(args);
 Config.Initialize(builder.Configuration);
 
 // Add services to the container.
-builder.Services.AddControllers();
+builder.Services.AddControllers(options =>
+{
+    options.Filters.Add<ValidateCsrfHeaderAttribute>();
+});
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(options =>
 {
@@ -117,10 +121,14 @@ app.MapControllers();
 using (var scope = app.Services.CreateScope())
 {
     var db = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
-    // development
-    await db.Database.EnsureCreatedAsync();
-    // production
-    // await db.Database.MigrateAsync();
+    if (app.Environment.IsDevelopment())
+    {
+        await db.Database.EnsureCreatedAsync();
+    }
+    else
+    {
+        await db.Database.MigrateAsync();
+    }
 }
 
 await app.RunAsync();
