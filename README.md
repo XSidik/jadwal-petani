@@ -8,7 +8,7 @@ An intelligent farming scheduler designed to help farmers manage their planting 
 - **Google Integration**: Sync your farming tasks directly with Google Calendar.
 - **User Authentication**: Secure Login using Google OAuth.
 - **Modern UI**: Clean, responsive dashboard built with Next.js and Tailwind CSS.
-- **Local Database**: Robust data management using SQLite.
+- **Robust Database**: Scalable data management using PostgreSQL.
 
 ---
 
@@ -17,7 +17,7 @@ An intelligent farming scheduler designed to help farmers manage their planting 
 ### Backend
 - **Framework**: [.NET 10 (ASP.NET Core API)](https://dotnet.microsoft.com/en-us/download/dotnet/10.0)
 - **Language**: C#
-- **Database**: Entity Framework Core with SQLite
+- **Database**: Entity Framework Core with PostgreSQL
 - **AI Integration**: Google Gemini API
 - **Authentication**: Google OAuth 2.0
 - **External API**: Google Calendar API
