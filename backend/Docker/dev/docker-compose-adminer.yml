@@ -1,0 +1,17 @@
+version: "3.9"
+
+services:
+  adminer:
+    image: adminer:latest
+    container_name: techpetani_adminer
+    restart: always
+    ports:
+      - "8080:8080"
+    networks:
+      - techpetani_network
+    environment:
+      ADMINER_DEFAULT_SERVER: postgres
+
+networks:
+  techpetani_network:
+    driver: bridge

@@ -65,7 +65,8 @@ public class ScheduleService : IScheduleService
                 TaskName = t.TaskName,
                 Description = t.Description,
                 ScheduledDate = t.ScheduledDate,
-                IsCompleted = t.IsCompleted
+                IsCompleted = t.IsCompleted,
+                EventId = t.GoogleCalendarEventId
             }).OrderBy(t => t.ScheduledDate).ToList()
         }).ToList();
     }
@@ -89,7 +90,8 @@ public class ScheduleService : IScheduleService
                 TaskName = t.TaskName,
                 Description = t.Description,
                 ScheduledDate = t.ScheduledDate,
-                IsCompleted = t.IsCompleted
+                IsCompleted = t.IsCompleted,
+                EventId = t.GoogleCalendarEventId
             }).OrderBy(t => t.ScheduledDate).ToList()
         };
     }

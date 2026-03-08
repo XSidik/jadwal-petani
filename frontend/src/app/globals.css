@@ -28,3 +28,25 @@ body {
   --color-primary: #16a34a;
   --color-primary-dark: #15803d;
 }
+
+/* Fix for date inputs on mobile */
+input[type="date"] {
+  min-height: 44px;
+  color-scheme: light dark;
+}
+
+/* Ensure native picker internal fields inherit text color correctly */
+input[type="date"]::-webkit-calendar-picker-indicator {
+  cursor: pointer;
+  opacity: 0.6;
+}
+
+/* Ensure native picker icon is visible/clickable */
+input[type="date"]::-webkit-calendar-picker-indicator {
+  cursor: pointer;
+  width: 24px;
+  height: 24px;
+  padding: 4px;
+  opacity: 0.8 !important;
+  filter: invert(0.5); /* Helps visibility in both modes */
+}

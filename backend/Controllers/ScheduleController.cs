@@ -179,6 +179,11 @@ public class ScheduleController : ControllerBase
             return Unauthorized(new { message = "Not authenticated with Google" });
         }
 
+        if (schedule.Tasks != null && schedule.Tasks.Any(t => !string.IsNullOrWhiteSpace(t.EventId)))
+        {
+            return BadRequest(new { message = "Schedule already exported to Google Calendar!" });
+        }
+
         var result = await _calendarService.ExportToCalendarAsync(accessToken, schedule);
         if (result)
         {

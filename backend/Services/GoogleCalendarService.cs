@@ -33,9 +33,11 @@ public class GoogleCalendarService : IGoogleCalendarService
 
             foreach (var task in schedule.Tasks!)
             {
+                if (!string.IsNullOrWhiteSpace(task.EventId)) continue;
+
                 var calendarEvent = new
                 {
-                    summary = $"{schedule.PlantName} - {task.TaskName}",
+                    summary = $"TechPetani: {schedule.PlantName} - {task.TaskName}",
                     description = task.Description,
                     start = new
                     {

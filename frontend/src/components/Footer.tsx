@@ -1,8 +1,10 @@
 "use client";
 
-import { Sprout, Facebook, Twitter, Instagram, Linkedin, ChevronRight, MapPin, Phone, Mail } from "lucide-react";
+import { Facebook, Twitter, Instagram, Linkedin, ChevronRight, MapPin, Phone, Mail } from "lucide-react";
 import Link from "next/link";
 import { useLanguage } from "@/context/LanguageContext";
+
+const currentYear = new Date().getFullYear();
 
 export default function Footer() {
     const { t } = useLanguage();
@@ -13,13 +15,13 @@ export default function Footer() {
                     {/* Brand Section */}
                     <div className="col-span-1 md:col-span-2">
                         <div className="flex items-center mb-4">
-                            <Sprout className="text-green-500 w-8 h-8 mr-3" />
-                            <span className="text-white text-2xl font-bold">Jadwal Petani</span>
+                            <img src="/logo.png" alt="Tech Petani Logo" className="w-10 h-10 object-contain mr-3 bg-white rounded-lg p-1" />
+                            <span className="text-white text-2xl font-bold">Tech Petani</span>
                         </div>
                         <p className="text-gray-400 mb-6 max-w-sm leading-relaxed">
                             {t("footerDesc")}
                         </p>
-                        <div className="flex space-x-4">
+                        {/* <div className="flex space-x-4">
                             {[Facebook, Twitter, Instagram, Linkedin].map((Icon, i) => (
                                 <a
                                     key={i}
@@ -29,21 +31,20 @@ export default function Footer() {
                                     <Icon className="w-5 h-5" />
                                 </a>
                             ))}
-                        </div>
+                        </div> */}
                     </div>
 
                     {/* Quick Links */}
                     <div>
                         <h3 className="text-white text-lg font-semibold mb-6 relative inline-block">
-                            Quick Links
+                            {t("quickLinks")}
                             <span className="absolute bottom-0 left-0 w-1/2 h-1 bg-green-500 rounded"></span>
                         </h3>
                         <ul className="space-y-3">
                             {[
-                                { label: "Home", href: "/" },
-                                { label: "My Schedules", href: "/schedules" },
-                                { label: "Create Schedule", href: "/schedules/create" },
-                                { label: "About Us", href: "#" },
+                                { label: t("home"), href: "/" },
+                                { label: t("mySchedules"), href: "/schedules" },
+                                { label: t("aboutUs"), href: "#" },
                             ].map((link, i) => (
                                 <li key={i}>
                                     <Link href={link.href} className="hover:text-green-500 transition duration-300 flex items-center group">
@@ -56,7 +57,7 @@ export default function Footer() {
                     </div>
 
                     {/* Contact Info */}
-                    <div>
+                    {/* <div>
                         <h3 className="text-white text-lg font-semibold mb-6 relative inline-block">
                             {t("contactUs")}
                             <span className="absolute bottom-0 left-0 w-1/2 h-1 bg-green-500 rounded"></span>
@@ -81,18 +82,21 @@ export default function Footer() {
                                 <span>info@jadwalpetani.com</span>
                             </li>
                         </ul>
-                    </div>
+                    </div> */}
                 </div>
 
                 <hr className="border-gray-800 my-8" />
 
                 <div className="flex flex-col md:flex-row justify-between items-center text-sm text-gray-500">
-                    <p>&copy; 2026 Jadwal Petani. All rights reserved.</p>
-                    <div className="flex space-x-6 mt-4 md:mt-0">
+                    <p>&copy; {currentYear} Tech Petani. All rights reserved.</p>
+                    <p className="mt-1 text-xs opacity-75">
+                        Made with <span className="text-red-500">❤️</span> in West Lampung
+                    </p>
+                    {/* <div className="flex space-x-6 mt-4 md:mt-0">
                         <a href="#" className="hover:text-white transition duration-300">{t("privacyPolicy")}</a>
                         <a href="#" className="hover:text-white transition duration-300">{t("termsOfService")}</a>
                         <a href="#" className="hover:text-white transition duration-300">{t("cookiePolicy")}</a>
-                    </div>
+                    </div> */}
                 </div>
             </div>
         </footer>
