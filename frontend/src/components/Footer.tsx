@@ -15,7 +15,7 @@ export default function Footer() {
                     {/* Brand Section */}
                     <div className="col-span-1 md:col-span-2">
                         <div className="flex items-center mb-4">
-                            <img src="/logo.png" alt="Tech Petani Logo" className="w-10 h-10 object-contain mr-3 bg-white rounded-lg p-1" />
+                            <img src="/logo.jpg" alt="Tech Petani Logo" className="w-10 h-10 object-contain mr-3 bg-white rounded-lg p-1" />
                             <span className="text-white text-2xl font-bold">Tech Petani</span>
                         </div>
                         <p className="text-gray-400 mb-6 max-w-sm leading-relaxed">
