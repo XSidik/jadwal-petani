@@ -1,13 +1,14 @@
 "use client";
 
-import { useState } from "react";
-import axios from "axios";
+import { useState, useEffect } from "react";
+import api from "@/lib/api";
 import { useRouter } from "next/navigation";
-import { Sprout, Calendar, ArrowLeft, Loader2, Sparkles } from "lucide-react";
+import { Calendar, ArrowLeft, Loader2, Sparkles } from "lucide-react";
 import Link from "next/link";
 import { useAuth } from "@/context/AuthContext";
 import { useLanguage } from "@/context/LanguageContext";
 import FullPageLoader from "@/components/FullPageLoader";
+import toast from "react-hot-toast";
 
 export default function CreateSchedulePage() {
     const { t } = useLanguage();
@@ -15,17 +16,22 @@ export default function CreateSchedulePage() {
     const [plantingDate, setPlantingDate] = useState("");
     const [loading, setLoading] = useState(false);
     const router = useRouter();
-    const { user } = useAuth();
+    const { user, loading: authLoading } = useAuth();
+
+    useEffect(() => {
+        if (!authLoading && !user) {
+            router.push("/login");
+        }
+    }, [user, authLoading, router]);
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         setLoading(true);
         try {
-            const response = await axios.post(
-                `${process.env.NEXT_PUBLIC_API_URL}/api/schedule`,
+            const response = await api.post(
+                "/api/schedule",
                 { plantName, plantingDate },
                 {
-                    withCredentials: true,
                     transformResponse: [(data) => {
                         try {
                             return JSON.parse(data);
@@ -47,13 +53,13 @@ export default function CreateSchedulePage() {
                 console.error("Response status:", err.response.status);
                 console.error("Response headers:", err.response.headers);
             }
-            alert(`${t("createError")}: ${err.message}`);
+            toast.error(`${t("createError")}: ${err.message}`);
         } finally {
             setLoading(false);
         }
     };
 
-    if (!user) return <div className="text-center py-20">{t("loginRequiredCreate")}</div>;
+    if (authLoading || !user) return <div className="text-center py-20">{t("processing")}</div>;
 
     return (
         <div className="max-w-2xl mx-auto">
@@ -62,20 +68,20 @@ export default function CreateSchedulePage() {
                 <ArrowLeft className="w-5 h-5 mr-2 group-hover:-translate-x-1 transition-transform" /> {t("backToList")}
             </Link>
 
-            <div className="bg-white dark:bg-gray-800 rounded-3xl shadow-xl shadow-green-100/50 dark:shadow-none border border-green-50 dark:border-gray-700 overflow-hidden">
-                <div className="bg-green-600 dark:bg-green-700 p-8 text-white relative">
-                    <div className="absolute top-0 right-0 p-8 opacity-20">
-                        <Sparkles className="w-16 h-16 animate-pulse" />
+            <div className="bg-white dark:bg-gray-800 rounded-2xl sm:rounded-3xl shadow-xl shadow-green-100/50 dark:shadow-none border border-green-50 dark:border-gray-700 overflow-hidden">
+                <div className="bg-green-600 dark:bg-green-700 p-6 sm:p-8 text-white relative">
+                    <div className="absolute top-0 right-0 p-6 sm:p-8 opacity-20">
+                        <Sparkles className="w-12 h-12 sm:w-16 sm:h-16 animate-pulse" />
                     </div>
-                    <h1 className="text-3xl font-bold mb-2">{t("createNewSchedule")}</h1>
-                    <p className="text-green-100 dark:text-green-200">{t("aiDescription")}</p>
+                    <h1 className="text-2xl sm:text-3xl font-bold mb-2">{t("createNewSchedule")}</h1>
+                    <p className="text-green-100 dark:text-green-200 text-sm sm:text-base">{t("aiDescription")}</p>
                 </div>
 
-                <form onSubmit={handleSubmit} className="p-8 space-y-8">
+                <form onSubmit={handleSubmit} className="p-6 sm:p-8 space-y-6 sm:space-y-8">
                     <div className="space-y-6">
                         <div className="space-y-2">
-                            <label htmlFor="plantName" className="text-sm font-bold text-gray-700 dark:text-gray-300 uppercase tracking-wider flex items-center">
-                                <Sprout className="w-4 h-4 mr-2 text-green-600 dark:text-green-500" /> {t("plantNameLabel")}
+                            <label htmlFor="plantName" className="text-xs sm:text-sm font-bold text-gray-700 dark:text-gray-300 uppercase tracking-wider flex items-center">
+                                <img src="/logo.png" alt="" className="w-4 h-4 mr-2 object-contain" /> {t("plantNameLabel")}
                             </label>
                             <input
                                 id="plantName"
@@ -84,12 +90,12 @@ export default function CreateSchedulePage() {
                                 value={plantName}
                                 onChange={(e) => setPlantName(e.target.value)}
                                 placeholder={t("plantNamePlaceholder")}
-                                className="w-full px-4 py-4 bg-gray-50 dark:bg-gray-900 border border-gray-100 dark:border-gray-700 rounded-2xl focus:ring-4 focus:ring-green-500/10 focus:border-green-500 transition-all text-lg text-gray-900 dark:text-white placeholder:text-gray-400 dark:placeholder:text-gray-500"
+                                className="w-full px-4 py-3 sm:py-4 bg-white dark:bg-gray-950 border border-gray-200 dark:border-gray-700 rounded-xl sm:rounded-2xl focus:ring-4 focus:ring-green-500/10 focus:border-green-500 transition-all text-base sm:text-lg text-gray-900 dark:text-gray-100 placeholder:text-gray-400 dark:placeholder:text-gray-500"
                             />
                         </div>
 
                         <div className="space-y-2">
-                            <label htmlFor="plantingDate" className="text-sm font-bold text-gray-700 dark:text-gray-300 uppercase tracking-wider flex items-center">
+                            <label htmlFor="plantingDate" className="text-xs sm:text-sm font-bold text-gray-700 dark:text-gray-300 uppercase tracking-wider flex items-center">
                                 <Calendar className="w-4 h-4 mr-2 text-green-600 dark:text-green-500" /> {t("plantingDateLabel")}
                             </label>
                             <input
@@ -98,7 +104,7 @@ export default function CreateSchedulePage() {
                                 required
                                 value={plantingDate}
                                 onChange={(e) => setPlantingDate(e.target.value)}
-                                className="w-full px-4 py-4 bg-gray-50 dark:bg-gray-900 border border-gray-100 dark:border-gray-700 rounded-2xl focus:ring-4 focus:ring-green-500/10 focus:border-green-500 transition-all text-lg text-gray-900 dark:text-white dark:[color-scheme:dark]"
+                                className="w-full h-12 sm:h-auto px-4 py-3 sm:py-4 bg-white dark:bg-gray-950 border border-gray-200 dark:border-gray-700 rounded-xl sm:rounded-2xl focus:ring-4 focus:ring-green-500/10 focus:border-green-500 transition-all text-base sm:text-lg text-gray-900 dark:text-gray-100"
                             />
                         </div>
                     </div>
@@ -106,7 +112,7 @@ export default function CreateSchedulePage() {
                     <button
                         type="submit"
                         disabled={loading}
-                        className="w-full bg-green-600 text-white py-5 rounded-2xl font-bold text-xl hover:bg-green-700 transition shadow-lg shadow-green-200 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center group"
+                        className="w-full bg-green-600 text-white py-4 sm:py-5 rounded-xl sm:rounded-2xl font-bold text-lg sm:text-xl hover:bg-green-700 transition shadow-lg shadow-green-200 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center group"
                     >
                         {loading ? (
                             <>

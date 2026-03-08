@@ -4,6 +4,7 @@ export interface Task {
     description: string;
     scheduledDate: string;
     isCompleted: boolean;
+    eventId?: string;
 }
 
 export interface Schedule {

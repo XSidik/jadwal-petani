@@ -39,3 +39,9 @@ public class EditTaskViewModel
     public DateTime ScheduledDate { get; set; }
     public bool IsCompleted { get; set; }
 }
+
+public class HomeStatsViewModel
+{
+    public int TotalUsers { get; set; }
+    public int TotalSchedules { get; set; }
+}

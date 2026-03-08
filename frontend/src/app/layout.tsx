@@ -22,6 +22,7 @@ import Footer from "@/components/Footer";
 import { AuthProvider } from "@/context/AuthContext";
 import { ThemeProvider } from "@/context/ThemeContext";
 import { LanguageProvider } from "@/context/LanguageContext";
+import { Toaster } from "react-hot-toast";
 
 export default function RootLayout({
   children,
@@ -53,9 +54,22 @@ export default function RootLayout({
       <body className="antialiased min-h-screen flex flex-col bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 transition-colors duration-300">
         <ThemeProvider>
           <LanguageProvider>
+            <Toaster 
+              position="top-center"
+              toastOptions={{ 
+                className: "dark:bg-gray-800 dark:text-white dark:border-gray-700",
+                duration: 4000,
+                style: {
+                  borderRadius: '12px',
+                  fontSize: '14px',
+                  fontWeight: '500',
+                  boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)',
+                }
+              }} 
+            />
             <AuthProvider>
               <Navbar />
-              <main className="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8 flex-grow w-full">
+              <main className="max-w-7xl mx-auto py-4 sm:py-8 px-4 sm:px-6 lg:px-8 flex-grow w-full">
                 {children}
               </main>
               <Footer />

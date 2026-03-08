@@ -7,7 +7,7 @@ public static class Config
     public static string GoogleClientSecret { get; private set; } = string.Empty;
     public static string GeminiApiKey { get; private set; } = string.Empty;
     public static string GeminiPromptTemplate { get; private set; } = string.Empty;
-    public static string ConnectionString { get; private set; } = "Data Source=farmingscheduler.db";
+    public static string ConnectionString { get; private set; } = string.Empty;
 
     public static void Initialize(IConfiguration configuration)
     {
@@ -16,6 +16,6 @@ public static class Config
         GoogleClientSecret = configuration["GOOGLE_CLIENT_SECRET"] ?? configuration["Authentication:Google:ClientSecret"] ?? string.Empty;
         GeminiApiKey = configuration["GEMINI_API_KEY"] ?? configuration["Gemini:ApiKey"] ?? string.Empty;
         GeminiPromptTemplate = configuration["GEMINI_PROMPT_TEMPLATE"] ?? string.Empty;
-        ConnectionString = configuration["CONNECTION_STRING"] ?? configuration.GetConnectionString("DefaultConnection") ?? "Data Source=farmingscheduler.db";
+        ConnectionString = configuration["CONNECTION_STRING"] ?? configuration.GetConnectionString("DefaultConnection") ?? string.Empty;
     }
 }

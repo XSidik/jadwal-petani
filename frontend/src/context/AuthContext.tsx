@@ -1,7 +1,7 @@
 "use client";
 
 import React, { createContext, useContext, useState, useEffect } from "react";
-import axios from "axios";
+import api from "@/lib/api";
 
 interface User {
     id: number;
@@ -24,7 +24,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
     const refreshUser = async () => {
         try {
-            const res = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/account/user`, { withCredentials: true });
+            const res = await api.get("/api/account/user");
             setUser(res.data);
         } catch {
             setUser(null);
@@ -38,7 +38,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     }, []);
 
     const logout = async () => {
-        await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/api/account/logout`, {}, { withCredentials: true });
+        await api.post("/api/account/logout", {});
         setUser(null);
         window.location.href = "/";
     };

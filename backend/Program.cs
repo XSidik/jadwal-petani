@@ -5,8 +5,10 @@ using JadwalPetani.Data;
 using JadwalPetani.Services;
 using dotenv.net;
 using JadwalPetani;
+using Microsoft.OpenApi;
 
 DotEnv.Load();
+AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
 
 var builder = WebApplication.CreateBuilder(args);
 Config.Initialize(builder.Configuration);
@@ -14,7 +16,15 @@ Config.Initialize(builder.Configuration);
 // Add services to the container.
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerGen(options =>
+{
+    options.SwaggerDoc("v1", new OpenApiInfo
+    {
+        Title = "techpetani-API",
+        Version = "v1",
+        Description = "This API provides endpoints for techpetani."
+    });
+});
 
 // Add CORS
 builder.Services.AddCors(options =>
@@ -29,9 +39,10 @@ builder.Services.AddCors(options =>
         });
 });
 
-// Add DbContext with SQLite
+// Add DbContext with PostgreSQL
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
-    options.UseSqlite(Config.ConnectionString));
+    options.UseNpgsql(Config.ConnectionString, o =>
+        o.EnableRetryOnFailure()));
 
 // Add Authentication
 builder.Services.AddAuthentication(options =>
@@ -72,6 +83,7 @@ builder.Services.AddSession(options =>
 // Register services
 builder.Services.AddHttpClient<IGeminiService, GeminiService>();
 builder.Services.AddScoped<IScheduleService, ScheduleService>();
+builder.Services.AddScoped<IHomeService, HomeService>();
 builder.Services.AddScoped<IGoogleCalendarService, GoogleCalendarService>();
 
 var app = builder.Build();
@@ -105,7 +117,10 @@ app.MapControllers();
 using (var scope = app.Services.CreateScope())
 {
     var db = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+    // development
     await db.Database.EnsureCreatedAsync();
+    // production
+    // await db.Database.MigrateAsync();
 }
 
 await app.RunAsync();
