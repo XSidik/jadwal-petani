@@ -50,7 +50,7 @@ export default function Navbar() {
                     <div className="flex items-center">
                         <Link href="/" className="flex items-center group">
                             <div className="bg-white dark:bg-gray-100 p-1 rounded-lg mr-2 group-hover:rotate-12 transition-transform duration-300">
-                                <img src="/logo.png" alt="Tech Petani Logo" className="w-7 h-7 object-contain" />
+                                <img src="/logo.jpg" alt="Tech Petani Logo" className="w-7 h-7 object-contain" />
                             </div>
                             <span className="text-white text-xl font-bold tracking-tight">Tech Petani</span>
                         </Link>

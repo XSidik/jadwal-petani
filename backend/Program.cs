@@ -36,7 +36,13 @@ builder.Services.AddCors(options =>
     options.AddPolicy("AllowNextJs",
         policy =>
         {
-            policy.WithOrigins(Config.FrontendUrl)
+            var origins = new List<string> { Config.FrontendUrl };
+            if (Config.FrontendUrl.StartsWith("https://") && !Config.FrontendUrl.Contains("www."))
+            {
+                origins.Add(Config.FrontendUrl.Replace("https://", "https://www."));
+            }
+
+            policy.WithOrigins(origins.ToArray())
                   .AllowAnyHeader()
                   .AllowAnyMethod()
                   .AllowCredentials();

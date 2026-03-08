@@ -81,7 +81,7 @@ export default function CreateSchedulePage() {
                     <div className="space-y-6">
                         <div className="space-y-2">
                             <label htmlFor="plantName" className="text-xs sm:text-sm font-bold text-gray-700 dark:text-gray-300 uppercase tracking-wider flex items-center">
-                                <img src="/logo.png" alt="" className="w-4 h-4 mr-2 object-contain" /> {t("plantNameLabel")}
+                                <img src="/logo.jpg" alt="" className="w-4 h-4 mr-2 object-contain" /> {t("plantNameLabel")}
                             </label>
                             <input
                                 id="plantName"

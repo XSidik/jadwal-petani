@@ -22,7 +22,7 @@ export default function LoginPage() {
             <div className="bg-white dark:bg-gray-800 rounded-3xl shadow-2xl shadow-green-100 dark:shadow-none border border-gray-100 dark:border-gray-700 overflow-hidden text-center p-10">
                 <div className="flex flex-col items-center mb-8">
                     <div className="bg-white p-4 rounded-2xl shadow-sm border border-gray-50 mb-3">
-                        <img src="/logo.png" alt="Tech Petani Logo" className="w-16 h-16 object-contain" />
+                        <img src="/logo.jpg" alt="Tech Petani Logo" className="w-16 h-16 object-contain" />
                     </div>
                     <span className="text-2xl font-bold text-gray-900 dark:text-white tracking-tight">Tech Petani</span>
                 </div>
