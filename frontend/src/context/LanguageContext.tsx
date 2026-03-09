@@ -111,7 +111,35 @@ const translations = {
         account: "Account",
         quickLinks: "Quick Links",
         home: "Home",
-        aboutUs: "About Us"
+        aboutUs: "About Us",
+
+        // Privacy Policy
+        privacyTitle: "Privacy Policy",
+        privacyLastUpdated: "Last updated: March 9, 2026",
+        privacyIntro: "At Tech Petani, we are committed to protecting your privacy and ensuring your personal information is handled with care and transparency.",
+        privacySec1Title: "Information We Collect",
+        privacySec1Desc: "We collect information you provide directly to us when you log in via Google, such as your name, email address, and profile picture. We also collect data related to your farming schedules and tasks created on our platform.",
+        privacySec2Title: "How We Use Your Information",
+        privacySec2Desc: "Your information is used to provide and improve our services, including generating AI-powered planting schedules, syncing with your Google Calendar, and personalizing your user experience.",
+        privacySec3Title: "Google Calendar Integration",
+        privacySec3Desc: "When you choose to export your schedules, Tech Petani requests access to manage your Google Calendar events. We only create, edit, or delete events specifically related to the farming schedules you manage within our application.",
+        privacySec4Title: "Data Retention & Security",
+        privacySec4Desc: "We store your data securely and only for as long as necessary to provide our services. You can delete your account and associated data at any time through your account settings or by contacting us.",
+        
+        // Terms of Service
+        termsTitle: "Terms of Service",
+        termsLastUpdated: "Last updated: March 9, 2026",
+        termsIntro: "By using Tech Petani, you agree to comply with the terms and conditions outlined below. Please read them carefully.",
+        termsSec1Title: "Acceptance of Terms",
+        termsSec1Desc: "Our platform is designed to provide farming schedule management. By accessing or using our services, you signify your full acceptance of these terms.",
+        termsSec2Title: "User Responsibilities",
+        termsSec2Desc: "You are responsible for the accuracy of information related to your farming tasks. We are not liable for any production loss resulting from the misapplication of AI-generated schedules.",
+        termsSec3Title: "Authorized Access",
+        termsSec3Desc: "You must only use the platform for lawful purposes. You are responsible for maintaining the confidentiality of your login credentials.",
+        termsSec4Title: "Termination of Service",
+        termsSec4Desc: "Tech Petani reserves the right to suspend or terminate access to our services if terms are violated or to protect the integrity of our platform.",
+        
+        backToHome: "Back to Home"
     },
     id: {
         // Hero Section
@@ -213,7 +241,35 @@ const translations = {
         account: "Account",
         quickLinks: "Tautan Cepat",
         home: "Beranda",
-        aboutUs: "Tentang Kami"
+        aboutUs: "Tentang Kami",
+
+        // Privacy Policy
+        privacyTitle: "Kebijakan Privasi",
+        privacyLastUpdated: "Terakhir diperbarui: 9 Maret 2026",
+        privacyIntro: "Di Tech Petani, kami berkomitmen untuk melindungi privasi Anda dan memastikan informasi pribadi Anda ditangani dengan hati-hati dan transparan.",
+        privacySec1Title: "Informasi yang Kami Kumpulkan",
+        privacySec1Desc: "Kami mengumpulkan informasi yang Anda berikan langsung kepada kami saat login melalui Google, seperti nama, alamat email, dan foto profil Anda. Kami juga mengumpulkan data terkait jadwal dan tugas pertanian yang Anda buat di platform kami.",
+        privacySec2Title: "Bagaimana Kami Menggunakan Informasi Anda",
+        privacySec2Desc: "Informasi Anda digunakan untuk menyediakan dan meningkatkan layanan kami, termasuk pembuatan jadwal tanam berbasis AI, sinkronisasi dengan Google Calendar, dan personalisasi pengalaman pengguna Anda.",
+        privacySec3Title: "Integrasi Google Calendar",
+        privacySec3Desc: "Saat Anda memilih untuk mengekspor jadwal, Tech Petani meminta akses untuk mengelola acara Google Calendar Anda. Kami hanya membuat, mengedit, atau menghapus acara yang secara khusus terkait dengan jadwal pertanian yang Anda kelola di aplikasi kami.",
+        privacySec4Title: "Retensi Data & Keamanan",
+        privacySec4Desc: "Kami menyimpan data Anda dengan aman dan hanya selama diperlukan untuk menyediakan layanan kami. Anda dapat menghapus akun dan data terkait kapan saja melalui pengaturan akun atau dengan menghubungi kami.",
+
+        // Terms of Service
+        termsTitle: "Ketentuan Layanan",
+        termsLastUpdated: "Terakhir diperbarui: 9 Maret 2026",
+        termsIntro: "Dengan menggunakan Tech Petani, Anda setuju untuk mematuhi syarat dan ketentuan yang diuraikan di bawah ini. Harap baca dengan saksama.",
+        termsSec1Title: "Penerimaan Ketentuan",
+        termsSec1Desc: "Platform kami dirancang untuk menyediakan pengelolaan jadwal pertanian. Dengan mengakses atau menggunakan layanan kami, Anda menyatakan penerimaan penuh atas ketentuan ini.",
+        termsSec2Title: "Tanggung Jawab Pengguna",
+        termsSec2Desc: "Anda bertanggung jawab atas keakuratan informasi terkait tugas pertanian Anda. Kami tidak bertanggung jawab atas kerugian produksi sebagai akibat dari salah penggunaan jadwal yang dihasilkan AI.",
+        termsSec3Title: "Akses Berwenang",
+        termsSec3Desc: "Anda harus menggunakan platform hanya untuk tujuan yang sah. Anda bertanggung jawab untuk menjaga kerahasiaan kredensial login Anda.",
+        termsSec4Title: "Penghentian Layanan",
+        termsSec4Desc: "Tech Petani berhak menangguhkan atau menghentikan akses ke layanan kami jika ketentuan dilanggar atau untuk melindungi integritas platform kami.",
+
+        backToHome: "Kembali ke Beranda"
     }
 };
 

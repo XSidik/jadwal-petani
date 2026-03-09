@@ -92,11 +92,10 @@ export default function Footer() {
                     <p className="mt-1 text-xs opacity-75">
                         Made with <span className="text-red-500">❤️</span> in West Lampung
                     </p>
-                    {/* <div className="flex space-x-6 mt-4 md:mt-0">
-                        <a href="#" className="hover:text-white transition duration-300">{t("privacyPolicy")}</a>
-                        <a href="#" className="hover:text-white transition duration-300">{t("termsOfService")}</a>
-                        <a href="#" className="hover:text-white transition duration-300">{t("cookiePolicy")}</a>
-                    </div> */}
+                    <div className="flex space-x-6 mt-4 md:mt-0">
+                        <Link href="/privacy" className="hover:text-white transition duration-300">{t("privacyPolicy")}</Link>
+                        <Link href="/terms" className="hover:text-white transition duration-300">{t("termsOfService")}</Link>
+                    </div>
                 </div>
             </div>
         </footer>
