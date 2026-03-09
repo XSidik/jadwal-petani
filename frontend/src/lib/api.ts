@@ -13,10 +13,16 @@ api.interceptors.response.use(
     (error) => {
         if (error.response && (error.response.status === 401 || error.response.status === 403)) {
             if (typeof window !== "undefined") {
-                const isSchedulesRoute = window.location.pathname.startsWith("/schedules");
+                const path = window.location.pathname;
+                const publicPages = ["/", "/privacy", "/terms", "/login"];
+                if (publicPages.includes(path)) {
+                    return Promise.reject(error);
+                }
+
+                const isSchedulesRoute = path.startsWith("/schedules");
                 const redirectTo = isSchedulesRoute ? "/login" : "/";
-                
-                if (window.location.pathname !== redirectTo) {
+
+                if (path !== redirectTo) {
                     window.location.href = redirectTo;
                 }
             }
