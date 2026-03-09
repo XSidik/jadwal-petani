@@ -53,7 +53,11 @@ builder.Services.AddCors(options =>
 // Add DbContext with PostgreSQL
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseNpgsql(Config.ConnectionString, o =>
-        o.EnableRetryOnFailure()));
+        o.EnableRetryOnFailure(
+            maxRetryCount: 5,
+            maxRetryDelay: TimeSpan.FromSeconds(10),
+            errorCodesToAdd: null
+        )));
 
 // Add Authentication
 builder.Services.AddAuthentication(options =>
