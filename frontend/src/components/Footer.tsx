@@ -9,7 +9,7 @@ const currentYear = new Date().getFullYear();
 export default function Footer() {
     const { t } = useLanguage();
     return (
-        <footer className="bg-gray-900 text-gray-300 mt-12 border-t border-gray-800">
+        <footer className="bg-gray-900 text-gray-200 mt-12 border-t border-gray-800">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
                 <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
                     {/* Brand Section */}
@@ -18,7 +18,7 @@ export default function Footer() {
                             <img src="/logo.jpg" alt="Tech Petani Logo" className="w-10 h-10 object-contain mr-3 bg-white rounded-lg p-1" />
                             <span className="text-white text-2xl font-bold">Tech Petani</span>
                         </div>
-                        <p className="text-gray-400 mb-6 max-w-sm leading-relaxed">
+                        <p className="text-gray-300 mb-6 max-w-sm leading-relaxed">
                             {t("footerDesc")}
                         </p>
                         {/* <div className="flex space-x-4">
@@ -44,7 +44,7 @@ export default function Footer() {
                             {[
                                 { label: t("home"), href: "/" },
                                 { label: t("mySchedules"), href: "/schedules" },
-                                { label: t("aboutUs"), href: "#" },
+                                { label: t("aboutUs"), href: "/about" },
                             ].map((link, i) => (
                                 <li key={i}>
                                     <Link href={link.href} className="hover:text-green-500 transition duration-300 flex items-center group">
@@ -87,10 +87,10 @@ export default function Footer() {
 
                 <hr className="border-gray-800 my-8" />
 
-                <div className="flex flex-col md:flex-row justify-between items-center text-sm text-gray-500">
-                    <p>&copy; {currentYear} Tech Petani. All rights reserved.</p>
-                    <p className="mt-1 text-xs opacity-75">
-                        Made with <span className="text-red-500">❤️</span> in West Lampung
+                <div className="flex flex-col md:flex-row justify-between items-center text-sm text-gray-300">
+                    <p>&copy; {currentYear} Tech Petani. {t("copyright")}</p>
+                    <p className="mt-1 text-xs opacity-90">
+                        {t("madeInPart1")} <span className="text-red-500">❤️</span> {t("madeInPart2")}
                     </p>
                     <div className="flex space-x-6 mt-4 md:mt-0">
                         <Link href="/privacy" className="hover:text-white transition duration-300">{t("privacyPolicy")}</Link>
