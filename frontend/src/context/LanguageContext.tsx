@@ -112,6 +112,9 @@ const translations = {
         quickLinks: "Quick Links",
         home: "Home",
         aboutUs: "About Us",
+        copyright: "All rights reserved.",
+        madeInPart1: "Made with",
+        madeInPart2: "in West Lampung",
 
         // Privacy Policy
         privacyTitle: "Privacy Policy",
@@ -139,7 +142,14 @@ const translations = {
         termsSec4Title: "Termination of Service",
         termsSec4Desc: "Tech Petani reserves the right to suspend or terminate access to our services if terms are violated or to protect the integrity of our platform.",
         
-        backToHome: "Back to Home"
+        backToHome: "Back to Home",
+        aboutTitle: "About Us",
+        aboutMission: "Our Mission",
+        aboutMissionDesc: "Helping Indonesian farmers increase productivity through digital technology and artificial intelligence.",
+        aboutVision: "Our Vision",
+        aboutVisionDesc: "To become the leading platform for the modern agricultural ecosystem in Indonesia.",
+        aboutStory: "Our Story",
+        aboutStoryDesc: "Tech Petani was born from a desire to help traditional farmers transition to modern agriculture with easy-to-use tools."
     },
     id: {
         // Hero Section
@@ -165,12 +175,12 @@ const translations = {
 
         // Schedules Page
         schedulesTitle: "Jadwal Bertani Saya",
-        newSchedule: "New Schedule",
+        newSchedule: "Jadwal Baru",
         noSchedules: "Belum Ada Jadwal",
         noSchedulesDesc: "Buat jadwal bertani pertama Anda untuk mulai mengelola tanaman Anda dengan cerdas.",
         createFirst: "Buat Jadwal Pertama",
         plantedDate: "Ditanam",
-        export: "Export",
+        export: "Ekspor",
         exporting: "Mengekspor...",
         exported: "Terekspor",
         alreadyExported: "Jadwal ini sudah diekspor ke Google Calendar.",
@@ -231,17 +241,20 @@ const translations = {
         cookiePolicy: "Kebijakan Cookie",
 
         // Navbar
-        mySchedules: "My Schedules",
-        logout: "Log out",
-        login: "Login",
+        mySchedules: "Jadwal Saya",
+        logout: "Keluar",
+        login: "Masuk",
         welcome: "Selamat Datang!",
         loginDesc: "Masuk untuk mulai mengelola jadwal tanam Anda dan integrasikan dengan Google Calendar.",
         loginWithGoogle: "Masuk dengan Google",
         termsAgreement: "Dengan masuk, Anda menyetujui Ketentuan Layanan dan Kebijakan Privasi kami.",
-        account: "Account",
+        account: "Akun",
         quickLinks: "Tautan Cepat",
         home: "Beranda",
         aboutUs: "Tentang Kami",
+        copyright: "Hak cipta dilindungi undang-undang.",
+        madeInPart1: "Dibuat dengan",
+        madeInPart2: "di Lampung Barat",
 
         // Privacy Policy
         privacyTitle: "Kebijakan Privasi",
@@ -269,7 +282,14 @@ const translations = {
         termsSec4Title: "Penghentian Layanan",
         termsSec4Desc: "Tech Petani berhak menangguhkan atau menghentikan akses ke layanan kami jika ketentuan dilanggar atau untuk melindungi integritas platform kami.",
 
-        backToHome: "Kembali ke Beranda"
+        backToHome: "Kembali ke Beranda",
+        aboutTitle: "Tentang Kami",
+        aboutMission: "Misi Kami",
+        aboutMissionDesc: "Membantu petani Indonesia meningkatkan produktivitas melalui teknologi digital dan kecerdasan buatan.",
+        aboutVision: "Visi Kami",
+        aboutVisionDesc: "Menjadi platform utama bagi ekosistem pertanian modern di Indonesia.",
+        aboutStory: "Cerita Kami",
+        aboutStoryDesc: "Tech Petani lahir dari keinginan untuk membantu petani tradisional beralih ke pertanian modern dengan alat yang mudah digunakan."
     }
 };
 
